@@ -27,7 +27,7 @@
                     <h5 class="card-title">{{ $product->title }}</h5>
                     <p class="card-text text-muted flex-grow-1">{{ Str::limit($product->description, 80) }}</p>
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="h5 text-primary mb-0">${{ number_format($product->price, 2) }}</span>
+                        <span class="h5 text-primary mb-0">₹{{ number_format($product->price, 2) }}</span>
                         @if($product->stock > 0)
                         <span class="badge bg-success">{{ $product->stock }} left</span>
                         @else

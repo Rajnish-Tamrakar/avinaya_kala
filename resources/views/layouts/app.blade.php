@@ -79,11 +79,15 @@
                         <a class="nav-link" href="{{ route('products.index') }}">Products</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('orders.index') }}">Orders</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('pages.about') }}">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('pages.contact') }}">Contact</a>
                     </li>
+                    
                 </ul>
 
                 <ul class="navbar-nav">
@@ -141,8 +145,10 @@
                     <ul class="list-unstyled">
                         <li><a href="{{ route('home') }}" class="text-decoration-none">Home</a></li>
                         <li><a href="{{ route('products.index') }}" class="text-decoration-none">Products</a></li>
+                        <li><a href="{{ route('orders.index') }}" class="text-decoration-none">Orders</a></li>
                         <li><a href="{{ route('pages.about') }}" class="text-decoration-none">About Us</a></li>
                         <li><a href="{{ route('pages.contact') }}" class="text-decoration-none">Contact</a></li>
+                        
                     </ul>
                 </div>
                 <div class="col-md-3">

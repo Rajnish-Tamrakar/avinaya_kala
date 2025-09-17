@@ -8,7 +8,7 @@
         <div class="col-lg-8">
             <div class="text-center mb-5">
                 <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
-                <h1 class="h2 mt-3 mb-3">Order Confirmed!</h1>
+                <h1 class="h2 mt-3 mb-3">Order Placed Successfully!</h1>
                 <p class="lead text-muted">Thank you for your order. We'll process it shortly.</p>
             </div>
 
@@ -109,6 +109,9 @@
                     </a>
                     <a href="{{ route('products.index') }}" class="btn btn-outline-primary">
                         <i class="bi bi-shop"></i> Continue Shopping
+                    </a>
+                    <a href="{{ route('orders.show', $order->id) }}" class="btn btn-outline-success">
+                        <i class="bi bi-receipt"></i> View Order
                     </a>
                 </div>
             </div>

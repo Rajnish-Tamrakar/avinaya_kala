@@ -16,23 +16,25 @@ class Order extends Model
         'email',
         'shipping_address',
         'total',
-        'status'
+        'status',
     ];
 
     protected $casts = [
         'shipping_address' => 'array',
-        'total' => 'decimal:2'
+        'total' => 'decimal:2',
     ];
 
+    // --- Relationships ---
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
     }
 
+    // --- Events ---
     protected static function boot()
     {
         parent::boot();
-        
+
         static::creating(function ($order) {
             if (empty($order->order_number)) {
                 $order->order_number = 'ORD-' . strtoupper(uniqid());
@@ -40,8 +42,16 @@ class Order extends Model
         });
     }
 
-    public function getFormattedTotalAttribute()
+    // --- Accessors ---
+    public function getFormattedTotalAttribute(): string
     {
-        return '$' . number_format($this->total, 2);
+        return '₹' . number_format($this->total, 2);
+    }
+
+    public function getFormattedAddressAttribute(): string
+    {
+        return is_array($this->shipping_address)
+            ? implode(', ', $this->shipping_address)
+            : (string) $this->shipping_address;
     }
 }

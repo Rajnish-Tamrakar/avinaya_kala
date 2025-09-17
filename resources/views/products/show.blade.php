@@ -45,7 +45,7 @@
                 <h1 class="h2 mb-3">{{ $product->title }}</h1>
 
                 <div class="mb-3">
-                    <span class="h3 text-primary">${{ number_format($product->price, 2) }}</span>
+                    <span class="h3 text-primary">₹{{ number_format($product->price, 2) }}</span>
                 </div>
 
                 <div class="mb-4">
