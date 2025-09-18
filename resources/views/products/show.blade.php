@@ -50,9 +50,15 @@
 
                 <div class="mb-4">
                     @if($product->stock > 0)
+                    @if($product->stock < 10)
+                    <span class="badge bg-warning fs-6">
+                        <i class="bi bi-check-circle"></i> In Stock ({{ $product->stock }} available)
+                    </span>
+                    @else
                     <span class="badge bg-success fs-6">
                         <i class="bi bi-check-circle"></i> In Stock ({{ $product->stock }} available)
                     </span>
+                    @endif
                     @else
                     <span class="badge bg-danger fs-6">
                         <i class="bi bi-x-circle"></i> Out of Stock

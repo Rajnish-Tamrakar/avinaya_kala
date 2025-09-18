@@ -14,29 +14,35 @@
     @if($products->count() > 0)
     <div class="row g-4">
         @foreach($products as $product)
-        <div class="col-sm-6 col-lg-4 col-xl-3">
+        <div class="col-sm-6 col-lg-4 col-xl-3 mb-4">
             <div class="card product-card h-100 shadow-sm">
-                <img
-                    src="{{ $product->image
-                                ? asset('storage/' . $product->image)
-                                : asset('images/placeholder.jpg') }}"
-                    alt="{{ $product->title }}"
-                    class="card-img-top"
-                    style="height: 200px; object-fit: cover;">
-                <div class="card-body d-flex flex-column">
+                <div class="card-img-container">
+                    <img
+                        src="{{ $product->image ? asset('storage/' . $product->image) : asset('images/placeholder.jpg') }}"
+                        alt="{{ $product->title }}"
+                        class="card-img-top"
+                        loading="lazy">
+                </div>
+                <div class="card-body">
                     <h5 class="card-title">{{ $product->title }}</h5>
-                    <p class="card-text text-muted flex-grow-1">{{ Str::limit($product->description, 80) }}</p>
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="h5 text-primary mb-0">₹{{ number_format($product->price, 2) }}</span>
-                        @if($product->stock > 0)
-                        <span class="badge bg-success">{{ $product->stock }} left</span>
-                        @else
-                        <span class="badge bg-danger">Out of Stock</span>
-                        @endif
+                    <p class="card-text text-muted">{{ Str::limit($product->description, 80) }}</p>
+                    <div class="mt-auto">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="h5 text-primary mb-0">₹{{ number_format($product->price, 2) }}</span>
+                            @if($product->stock > 0 )
+                            @if($product->stock < 10)
+                            <span class="badge bg-warning">Only {{ $product->stock }} left</span>
+                            @else
+                            <span class="badge bg-success">{{ $product->stock }}</span>
+                            @endif
+                            @else
+                            <span class="badge bg-danger">Out of Stock</span>
+                            @endif
+                        </div>
+                        <a href="{{ route('products.show', $product->slug) }}" class="btn btn-primary w-100">
+                            View Details
+                        </a>
                     </div>
-                    <a href="{{ route('products.show', $product->slug) }}" class="btn btn-primary">
-                        View Details
-                    </a>
                 </div>
             </div>
         </div>
@@ -44,8 +50,8 @@
     </div>
 
     <!-- Pagination -->
-    <div class="d-flex justify-content-center mt-5">
-        {{ $products->links() }}
+    <div class="pagination-wrapper">
+        {{ $products->links('pagination::bootstrap-5') }}
     </div>
     @else
     <div class="text-center py-5">

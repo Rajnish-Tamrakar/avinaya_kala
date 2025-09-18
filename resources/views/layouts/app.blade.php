@@ -19,11 +19,92 @@
         }
 
         .product-card {
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .product-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .product-card .card-img-container {
+            height: 200px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+        }
+
+        .product-card .card-img-top {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 1rem;
+        }
+
+        .product-card .card-body {
+            display: flex;
+            flex-direction: column;
+            padding: 1.25rem;
+        }
+
+        .product-card .card-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-card .card-text {
+            flex-grow: 1;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Pagination styles */
+        .pagination {
+            margin: 2rem 0;
+            justify-content: center;
+        }
+
+        .pagination .page-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 38px;
+            height: 38px;
+            padding: 0 12px;
+            color: #0d6efd;
+            border: 1px solid #dee2e6;
+            margin: 0 2px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            color: white;
+        }
+
+        .pagination .page-link:hover {
+            background-color: #e9ecef;
+            color: #0a58ca;
+        }
+
+        .pagination .page-item.disabled .page-link {
+            color: #6c757d;
+            pointer-events: none;
+            background-color: #fff;
+            border-color: #dee2e6;
+        }
+
+        .pagination .page-link svg {
+            width: 1em;
+            height: 1em;
+            vertical-align: middle;
         }
 
         .cart-badge {

@@ -12,7 +12,7 @@
                 Transform your living space with our unique collection of handmade home decoration items.
                 Each piece is carefully crafted with love and attention to detail.
             </p>
-            <div class="d-flex gap-3">
+            <div class="d-flex gap-3 mb-4">
                 <a href="{{ route('products.index') }}" class="btn btn-primary btn-lg">
                     <i class="bi bi-shop"></i> Shop Now
                 </a>

@@ -59,7 +59,10 @@
             </table>
         </div>
 
-        
+        <!-- Pagination -->
+        <div class="pagination-wrapper mt-4">
+            {{ $orders->links('pagination::bootstrap-5') }}
+        </div>
     @else
         <div class="text-center py-5">
             <i class="bi bi-receipt display-1 text-muted"></i>
