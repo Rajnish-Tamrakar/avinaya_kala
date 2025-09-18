@@ -5,49 +5,57 @@
 @section('content')
 <div class="container">
     <!-- Hero Section -->
-    <div class="row align-items-center mb-5">
-        <div class="col-lg-6">
-            <h1 class="display-4 fw-bold text-primary mb-3">Beautiful Handcrafted Home Decor</h1>
+    <div class="row align-items-center mb-4 mb-lg-5 py-3 py-lg-4">
+        <div class="col-12 col-lg-6 order-2 order-lg-1">
+            <h1 class="display-5 fw-bold text-primary mb-3">Beautiful Handcrafted Home Decor</h1>
             <p class="lead text-muted mb-4">
                 Transform your living space with our unique collection of handmade home decoration items.
                 Each piece is carefully crafted with love and attention to detail.
             </p>
-            <div class="d-flex gap-3 mb-4">
-                <a href="{{ route('products.index') }}" class="btn btn-primary btn-lg">
-                    <i class="bi bi-shop"></i> Shop Now
+            <div class="d-flex flex-wrap gap-3 mb-3 mb-lg-4">
+                <a href="{{ route('products.index') }}" class="btn btn-primary btn-lg px-3 px-md-4">
+                    <i class="bi bi-shop me-1"></i> Shop Now
                 </a>
-                <a href="https://instagram.com" target="_blank" class="btn btn-outline-primary btn-lg">
-                    <i class="bi bi-instagram"></i> Follow Us
+                <a href="https://instagram.com" target="_blank" class="btn btn-outline-primary btn-lg px-3 px-md-4">
+                    <i class="bi bi-instagram me-1"></i> Follow Us
                 </a>
             </div>
         </div>
-        <div class="col-lg-6">
-            <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Handmade Home Decor" class="img-fluid rounded shadow">
+        <div class="col-12 col-lg-6 order-1 order-lg-2 mb-4 mb-lg-0">
+            <div class="ratio ratio-16x9 rounded overflow-hidden shadow">
+                <img 
+                    src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                    alt="Handmade Home Decor" 
+                    class="img-fluid"
+                    style="object-fit: cover;">
+            </div>
         </div>
     </div>
 
     <!-- Featured Products -->
-    <div class="row mb-5">
+    <div class="row mb-4 mb-lg-5">
         <div class="col-12">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="h3 mb-0">Featured Products</h2>
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+                <h2 class="h3 mb-3 mb-md-0">Featured Products</h2>
                 <a href="{{ route('products.index') }}" class="btn btn-outline-primary">
-                    View All Products <i class="bi bi-arrow-right"></i>
+                    View All <i class="bi bi-arrow-right ms-1"></i>
                 </a>
             </div>
         </div>
     </div>
 
     @if($featuredProducts->count() > 0)
-    <div class="row g-4">
+    <div class="row g-3 g-md-4">
         @foreach($featuredProducts as $product)
-        <div class="col-md-6 col-lg-4">
-            <div class="card product-card h-100 shadow-sm">
-                <img src="{{ $product->image
-                                ? asset('storage/' . $product->image)
-                                : asset('images/placeholder.jpg') }}"
-                    class="card-img-top" alt="{{ $product->title }}" style="height: 250px; object-fit: cover;">
+        <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card product-card h-100 shadow-sm border-0">
+                <div class="position-relative" style="padding-top: 75%;">
+                    <img 
+                        src="{{ $product->image ? asset('storage/' . $product->image) : asset('images/placeholder.jpg') }}"
+                        class="position-absolute top-0 start-0 w-100 h-100" 
+                        alt="{{ $product->title }}" 
+                        style="object-fit: cover;">
+                </div>
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">{{ $product->title }}</h5>
                     <p class="card-text text-muted flex-grow-1">{{ Str::limit($product->description, 100) }}</p>

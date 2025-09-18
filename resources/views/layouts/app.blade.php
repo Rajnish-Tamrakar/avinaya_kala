@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>@yield('title', 'Handmade Home Decor - Beautiful Handcrafted Items')</title>
 
@@ -13,9 +14,52 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
+        /* Base Typography */
+        :root {
+            --font-size-base: 1rem;
+            --font-size-lg: 1.25rem;
+            --font-size-sm: 0.875rem;
+        }
+        
+        /* Responsive Base Font Size */
+        html {
+            font-size: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            html {
+                font-size: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            html {
+                font-size: 14px;
+            }
+        }
+        
         .navbar-brand {
             font-weight: 700;
             font-size: 1.5rem;
+        }
+        
+        /* Responsive Headings */
+        h1 { font-size: 2.25rem; }
+        h2 { font-size: 1.8rem; }
+        h3 { font-size: 1.5rem; }
+        h4 { font-size: 1.25rem; }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.6rem; }
+            h3 { font-size: 1.4rem; }
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 1.75rem; }
+            h2 { font-size: 1.5rem; }
+            h3 { font-size: 1.3rem; }
+            .btn { padding: 0.5rem 1rem; }
         }
 
         .product-card {
@@ -106,6 +150,61 @@
             height: 1em;
             vertical-align: middle;
         }
+        
+        /* Responsive adjustments */
+        @media (max-width: 767.98px) {
+            /* Adjust fixed navbar height */
+            body {
+                padding-top: 56px; /* Height of fixed navbar */
+            }
+            
+            /* Improve touch targets */
+            .btn, .form-control, .form-select {
+                min-height: 44px; /* Minimum touch target size */
+            }
+            
+            /* Adjust card spacing */
+            .card {
+                margin-bottom: 1rem;
+            }
+            
+            /* Improve form elements */
+            .form-control, .form-select {
+                font-size: 1rem; /* Prevent zoom on focus in iOS */
+            }
+            
+            /* Adjust typography */
+            .display-5 {
+                font-size: 1.8rem;
+            }
+            
+            .lead {
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* Prevent long words from breaking layout */
+        .card-title, .card-text, p, h1, h2, h3, h4, h5, h6 {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        /* Responsive images */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Ensure buttons are touch-friendly on mobile */
+        .btn {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+        }
+        
+        .btn-lg {
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+        }
 
         .cart-badge {
             position: absolute;
@@ -141,34 +240,40 @@
 
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
         <div class="container">
-            <a class="navbar-brand text-primary" href="{{ route('home') }}">
-                <i class="bi bi-house-heart"></i> Avinaya Kala
+            <a class="navbar-brand text-primary fw-bold" href="{{ route('home') }}">
+                <i class="bi bi-house-heart me-1"></i> Avinaya Kala
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">Home</a>
+                        <a class="nav-link px-3 px-lg-2 py-2 py-lg-1" href="{{ route('home') }}">
+                            <i class="bi bi-house d-lg-none me-2"></i>Home
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('products.index') }}">Products</a>
+                        <a class="nav-link px-3 px-lg-2 py-2 py-lg-1" href="{{ route('products.index') }}">
+                            <i class="bi bi-grid d-lg-none me-2"></i>Products
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('orders.index') }}">Orders</a>
+                        <a class="nav-link px-3 px-lg-2 py-2 py-lg-1" href="{{ route('orders.index') }}">
+                            <i class="bi bi-receipt d-lg-none me-2"></i>Orders
+                        </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pages.about') }}">About</a>
+                    <li class="nav-item d-none d-lg-block">
+                        <a class="nav-link px-3 px-lg-2 py-2 py-lg-1" href="{{ route('pages.about') }}">About</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pages.contact') }}">Contact</a>
+                    <li class="nav-item d-none d-lg-block">
+                        <a class="nav-link px-3 px-lg-2 py-2 py-lg-1" href="{{ route('pages.contact') }}">Contact</a>
                     </li>
-                    
                 </ul>
 
                 <ul class="navbar-nav">

@@ -12,31 +12,31 @@
     </div>
 
     @if($products->count() > 0)
-    <div class="row g-4">
+    <div class="row g-3 g-md-4">
         @foreach($products as $product)
-        <div class="col-sm-6 col-lg-4 col-xl-3 mb-4">
-            <div class="card product-card h-100 shadow-sm">
-                <div class="card-img-container">
-                    <img
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+            <div class="card product-card h-100 shadow-sm border-0">
+                <div class="position-relative" style="padding-top: 75%;">
+                    <img 
                         src="{{ $product->image ? asset('storage/' . $product->image) : asset('images/placeholder.jpg') }}"
-                        alt="{{ $product->title }}"
-                        class="card-img-top"
-                        loading="lazy">
+                        class="position-absolute top-0 start-0 w-100 h-100" 
+                        alt="{{ $product->title }}" 
+                        style="object-fit: cover;">
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">{{ $product->title }}</h5>
-                    <p class="card-text text-muted">{{ Str::limit($product->description, 80) }}</p>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fs-5">{{ $product->title }}</h5>
+                    <p class="card-text text-muted small mb-3">{{ Str::limit($product->description, 80) }}</p>
                     <div class="mt-auto">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <span class="h5 text-primary mb-0">₹{{ number_format($product->price, 2) }}</span>
-                            @if($product->stock > 0 )
-                            @if($product->stock < 10)
-                            <span class="badge bg-warning">Only {{ $product->stock }} left</span>
+                            @if($product->stock > 0)
+                                @if($product->stock < 10)
+                                <span class="badge bg-warning text-dark">Only {{ $product->stock }} left</span>
+                                @else
+                                <span class="badge bg-success">{{ $product->stock }} in stock</span>
+                                @endif
                             @else
-                            <span class="badge bg-success">{{ $product->stock }}</span>
-                            @endif
-                            @else
-                            <span class="badge bg-danger">Out of Stock</span>
+                                <span class="badge bg-danger">Out of Stock</span>
                             @endif
                         </div>
                         <a href="{{ route('products.show', $product->slug) }}" class="btn btn-primary w-100">
@@ -50,8 +50,10 @@
     </div>
 
     <!-- Pagination -->
-    <div class="pagination-wrapper">
-        {{ $products->links('pagination::bootstrap-5') }}
+    <div class="mt-4 mt-md-5">
+        <nav aria-label="Products pagination">
+            {{ $products->onEachSide(1)->links('pagination::bootstrap-5') }}
+        </nav>
     </div>
     @else
     <div class="text-center py-5">
